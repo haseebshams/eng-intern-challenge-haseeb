@@ -1,5 +1,4 @@
 import sys
-
 braille_dict = {
     'a': 'O.....', 'b': 'O.O...', 'c': 'OO....', 'd': 'OO.O..', 'e': 'O..O..', 'f': 'OOO...',
     'g': 'OOOO..', 'h': 'O.OO..', 'i': '.OO...', 'j': '.OOO..', 'k': 'O...O.', 'l': 'O.O.O.',
@@ -16,17 +15,15 @@ english_dict = {v: k for k, v in braille_dict.items()}
 
 def translate(input_text):
     if input_text[0] in ['O', '.']:
-        # Braille to English
         translated = []
         for i in range(0, len(input_text), 6):
             braille_char = input_text[i:i+6]
             if braille_char in english_dict:
                 translated.append(english_dict[braille_char])
             else:
-                translated.append('?')  # Indicate an unknown Braille character
+                translated.append('?')
         return ''.join(translated)
     else:
-        # English to Braille
         return ''.join([braille_dict.get(char.lower(), '?') for char in input_text])
 
 
